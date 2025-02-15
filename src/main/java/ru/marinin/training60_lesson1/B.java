@@ -17,14 +17,13 @@ public class B {
 
     public static String findMin(int TBlue, int TRed, int SBlue, int SRed) {
         String ans = "";
-        if (TBlue > TRed && SBlue > SRed) {
-            ans += (Math.min(TBlue, TRed) + 1) + " " + (Math.min(SBlue, SRed) + 1);
-        } else if ( (TBlue == 0 || TRed ==0) && SBlue != 0 && SRed != 0) {
+
+        if ((TBlue == 0 && SBlue > SRed) || (TRed == 0 && SBlue < SRed)) {
             ans += (Math.min(TBlue, TRed) + 1) + " " + (Math.max(SBlue, SRed) + 1);
-        } else if ( (SBlue == 0 || SRed ==0) && TBlue != 0 && TRed != 0) {
+        } else if ((SBlue == 0 && TBlue > TRed) || (SRed == 0 && TBlue < TRed)) {
             ans += (Math.max(TBlue, TRed) + 1) + " " + (Math.min(SBlue, SRed) + 1);
         } else {
-            ans += (Math.max(TBlue, TRed) + 1) + " " + (Math.max(SBlue, SRed) + 1);
+            ans += (Math.min(TBlue, TRed) + 1) + " " + (Math.min(SBlue, SRed) + 1);
         }
 
         return ans;

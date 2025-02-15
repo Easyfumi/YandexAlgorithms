@@ -47,7 +47,7 @@ public class TestB {
         int SBlue = 1;
         int SRed = 6;
 
-        Assertions.assertEquals(B.findMin(TBlue, TRed, SBlue, SRed), "2 2");
+        Assertions.assertEquals(B.findMin(TBlue, TRed, SBlue, SRed), "7 7");
     }
 
     @Test
