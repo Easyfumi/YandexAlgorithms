@@ -15,7 +15,7 @@ public class C {
             list.add(scanner.nextLine());
         }
 
-        getSmallMatrix(n, list);
+        list = getSmallMatrix(n, list);
 
         System.out.println(getAnswer(list));
 
@@ -64,13 +64,14 @@ public class C {
         return "X";
     }
 
-    public static void getSmallMatrix(int n, List<String> list) {
+    public static List<String> getSmallMatrix(int n, List<String> list) {
         list = removeLines(n, list);
         list = ternLeft(list);
         list = removeLines(list.size(), list);
         list = ternLeft(list);
         list = ternLeft(list);
         list = ternLeft(list);
+        return list;
     }
 
     public static List<String> removeLines(int n, List<String> list) {
