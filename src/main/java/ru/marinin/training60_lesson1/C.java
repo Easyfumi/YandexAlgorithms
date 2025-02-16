@@ -15,62 +15,49 @@ public class C {
             list.add(scanner.nextLine());
         }
 
+        System.out.println(start(n, list));
+    }
+
+    public static String start(int n, List<String> list)  {
         list = getSmallMatrix(n, list);
-
-        System.out.println(getAnswer(list));
-
-
+        return getAnswer(list);
     }
 
     public static String getAnswer(List<String> list) {
         if (list.size() == 0) return "X";
 
         List<String> resList = new ArrayList<>();
-        resList.add(".#.");
-        resList.add("...");
-        if (list.equals(resList)) return "I";
-
-        resList.clear();
         resList.add("#");
         if (list.equals(resList)) return "I";
 
         resList.clear();
-        resList.add(".#.");
-        if (list.equals(resList)) return "I";
-
-        resList.clear();
-        resList.add("...");
-        resList.add(".#.");
-        if (list.equals(resList)) return "I";
-
-        resList.clear();
-        resList.add("...");
-        resList.add(".#.");
-        resList.add("...");
+        resList.add("###");
+        resList.add("#.#");
+        resList.add("###");
         if (list.equals(resList)) return "O";
 
         resList.clear();
-        resList.add("..");
-        resList.add(".#");
-        resList.add("..");
+        resList.add("##");
+        resList.add("#.");
+        resList.add("##");
         if (list.equals(resList)) return "C";
 
         resList.clear();
-        resList.add(".#");
-        resList.add("..");
+        resList.add("#.");
+        resList.add("##");
         if (list.equals(resList)) return "L";
 
         resList.clear();
-        resList.add(".#.");
-        resList.add("...");
-        resList.add(".#.");
+        resList.add("#.#");
+        resList.add("###");
+        resList.add("#.#");
         if (list.equals(resList)) return "H";
 
         resList.clear();
-        resList.add("...");
-        resList.add(".#.");
-        resList.add("...");
-        resList.add(".##");
+        resList.add("###");
+        resList.add("#.#");
+        resList.add("###");
+        resList.add("#..");
         if (list.equals(resList)) return "P";
 
 
@@ -94,7 +81,7 @@ public class C {
             return newList;
         } else {
             for (int i = 0; i < n; i++) {
-                if ((newList.isEmpty() || !newList.getLast().equals(list.get(i)))) {
+                if (list.get(i).contains("#") && (newList.isEmpty() || !newList.getLast().equals(list.get(i)))) {
                     newList.add(list.get(i));
                 }
             }
