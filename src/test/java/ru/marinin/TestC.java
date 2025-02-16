@@ -530,5 +530,31 @@ public class TestC {
         Assertions.assertEquals(C.start(list.size(), list, list), "X");
     }
 
+    @Test
+    @DisplayName("full test 10")
+    void fullTest10() {
+        List<String> list = new ArrayList<>();
+        list.add("###..#");
+        list.add("###..#");
+        list.add("######");
+        list.add("######");
+        list.add("##..##");
+        list.add("##..##");
+        Assertions.assertEquals(C.start(list.size(), list, list), "X");
+    }
+
+    @Test
+    @DisplayName("full test 11")
+    void fullTest11() {
+        List<String> list = new ArrayList<>();
+        list.add("......");
+        list.add("......");
+        list.add("......");
+        list.add("..##..");
+        list.add("......");
+        list.add("......");
+        Assertions.assertEquals(C.start(list.size(), list, list), "X");
+    }
+
 
 }
