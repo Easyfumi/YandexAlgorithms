@@ -36,11 +36,14 @@ public class C {
                     int x = j;
                     int y = n - i - 1;
                     pointList.add(new Point(x,y));
-                    while (j<n && str[i][j+1].equals("#")) j++;
+                    while (j<n-1 && str[i][j+1].equals("#")) j++;
                     while (i>0 && str[i-1][j].equals("#")) i--;
-                    x = j;
-                    y = n - i - 1;
-                    pointList.add(new Point(x,y));
+                    if (x!=j || y!=(n - i - 1)) {
+                        x = j;
+                        y = n - i - 1;
+                        pointList.add(new Point(x,y));
+                    }
+
                 }
             }
         }
@@ -60,15 +63,10 @@ class Point {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Point point = (Point) o;
-        return x == point.x && y == point.y;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(x, y);
+    public String toString() {
+        return "Point{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
     }
 }
