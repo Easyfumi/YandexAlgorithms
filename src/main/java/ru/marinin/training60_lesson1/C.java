@@ -10,45 +10,117 @@ public class C {
         int n = scanner.nextInt();
         scanner.nextLine();
 
-        String[][] strings = new String[n][n];
-
-        for (int i = 0; i < n; i++) {
-            String[] line = scanner.nextLine().split("");
-            System.arraycopy(line, 0, strings[i], 0, n);
-        }
-
-        getSmallMatrix(n, strings);
-
-
-    }
-
-    public static String[][] getSmallMatrix(int n, String[][] strings) {
-        removeLines(n, strings);
-
-        return strings;
-    }
-
-    public static String[][] removeLines(int n, String[][] strings) {
         List<String> list = new ArrayList<>();
         for (int i = 0; i < n; i++) {
-            String line = "";
-            for (int j = 0; j < n; j++) {
-                line += strings[i][j];
-            }
-            if (line.indexOf("#") > 0 && (list.isEmpty() || !list.getLast().equals(line))) {
-                list.add(line);
-            }
+            list.add(scanner.nextLine());
         }
+
+        getSmallMatrix(n, list);
+
+        System.out.println(getAnswer(list));
+
+
+    }
+
+    public static String getAnswer(List<String> list) {
+        if (list.size() == 0) return "X";
+
+        List<String> resList = new ArrayList<>();
+        resList.add(".#.");
+        resList.add("...");
+        if (list.equals(resList)) return "I";
+
+        resList.clear();
+        resList.add("...");
+        resList.add(".#.");
+        if (list.equals(resList)) return "I";
+
+        resList.clear();
+        resList.add("...");
+        resList.add(".#.");
+        resList.add("...");
+        if (list.equals(resList)) return "O";
+
+        resList.clear();
+        resList.add("..");
+        resList.add(".#");
+        resList.add("..");
+        if (list.equals(resList)) return "C";
+
+        resList.clear();
+        resList.add(".#.");
+        resList.add("...");
+        resList.add(".#.");
+        if (list.equals(resList)) return "H";
+
+        resList.clear();
+        resList.add("...");
+        resList.add(".#.");
+        resList.add("...");
+        resList.add(".##");
+        if (list.equals(resList)) return "P";
+
+
+        return "X";
+    }
+
+    public static void getSmallMatrix(int n, List<String> list) {
+        list = removeLines(n, list);
+        list = ternLeft(list);
+        list = removeLines(list.size(), list);
+        list = ternLeft(list);
+        list = ternLeft(list);
+        list = ternLeft(list);
+    }
+
+    public static List<String> removeLines(int n, List<String> list) {
+        List<String> newList = new ArrayList<>();
+
         if (list.isEmpty()) {
-            return new String[0][0];
+            return newList;
         } else {
-            return new String[list.size()][list.getFirst().length()];
+            for (int i = 0; i < n; i++) {
+                if ((newList.isEmpty() || !newList.getLast().equals(list.get(i)))) {
+                    newList.add(list.get(i));
+                }
+            }
         }
+        return newList;
     }
 
-    public static String[][] removeColumns(int n, String[][] strings) {
-        return new String[0][0];
+    public static List<String> ternLeft(List<String> list) {
+
+        if (list.size() == 0) return list;
+
+        String[][] matrix = new String[list.size()][list.getFirst().length()];
+
+        for (int i = 0; i < list.size(); i++) {
+            String[] line = list.get(i).split("");
+            for (int j = 0; j < list.getFirst().length(); j++) {
+                matrix[i][j] = line[j];
+            }
+        }
+
+        int n = matrix.length, m = matrix[0].length;
+
+        String[][] matrix_transpose = new String[m][n];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                matrix_transpose[j][i] = matrix[i][j];
+            }
+        }
+
+        List<String> turnedList = new ArrayList<>();
+
+        for (int i = 0; i < m; i++) {
+            String str = "";
+            for (int j = 0; j < n; j++) {
+                str += matrix_transpose[i][j];
+            }
+            turnedList.add(str);
+        }
+
+        return turnedList;
     }
-
-
 }
