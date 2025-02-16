@@ -104,22 +104,23 @@ public class TestC {
 
     @Test
     @DisplayName("getPointsTest5")
-    void getPointsTest5() { // 5x5
-        String[][] str = {  {".", ".", ".", ".", "."},
-                            {".", ".", "#", "#", "."},
-                            {".", ".", ".", ".", "."},
-                            {".", ".", "#", "#", "#"},
-                            {".", ".", "#", "#", "#"}  };
+    void getPointsTest5() { // 6x6
+        String[][] str = {  {".", ".", ".", ".", ".", "."},
+                            {".", ".", "#", "#", ".", "."},
+                            {".", ".", "#", "#", ".", "."},
+                            {".", ".", ".", ".", ".", "."},
+                            {".", ".", "#", "#", "#", "#"},
+                            {".", ".", "#", "#", "#", "#"}  };
 
         List<Point> pointList = new ArrayList<>();
         pointList.add(new Point(0,0));
-        pointList.add(new Point(4,4));
+        pointList.add(new Point(5,5));
         pointList.add(new Point(2,0));
-        pointList.add(new Point(4,1));
+        pointList.add(new Point(5,1));
         pointList.add(new Point(2,3));
-        pointList.add(new Point(3,3));
+        pointList.add(new Point(3,4));
 
-        Assertions.assertEquals(C.getPoints(5, str).toString(), pointList.toString());
+        Assertions.assertEquals(C.getPoints(6, str).toString(), pointList.toString());
     }
 
     @Test
@@ -174,10 +175,123 @@ public class TestC {
         Assertions.assertEquals(C.getPoints(5, str).toString(), pointList.toString());
     }
 
+    @Test
+    @DisplayName("getPointsTest9")
+    void getPointsTest9() { // 6x6
+        String[][] str = {  {".", ".", "#", "#", ".", "."},
+                            {".", ".", "#", "#", ".", "."},
+                            {".", ".", ".", ".", ".", "."},
+                            {".", ".", ".", ".", ".", "."},
+                            {".", ".", "#", "#", ".", "."},
+                            {".", ".", "#", "#", ".", "."}  };
+
+        List<Point> pointList = new ArrayList<>();
+        pointList.add(new Point(0,0));
+        pointList.add(new Point(5,5));
+        pointList.add(new Point(2,0));
+        pointList.add(new Point(3,1));
+        pointList.add(new Point(2,4));
+        pointList.add(new Point(3,5));
+
+        Assertions.assertEquals(C.getPoints(6, str).toString(), pointList.toString());
+    }
+
+    @Test
+    @DisplayName("getPointsTest10")
+    void getPointsTest10() { // 5x5
+        String[][] str = {  {".", ".", "#", "#", "#"},
+                            {".", ".", "#", "#", "#"},
+                            {".", ".", "#", "#", "#"},
+                            {".", ".", "#", "#", "#"},
+                            {".", ".", ".", ".", "."}  };
+
+        List<Point> pointList = new ArrayList<>();
+        pointList.add(new Point(0, 0));
+        pointList.add(new Point(4, 4));
+        pointList.add(new Point(2, 1));
+        pointList.add(new Point(4, 4));
+
+        Assertions.assertEquals(C.getPoints(5, str).toString(), pointList.toString());
+    }
+
+    @Test
+    @DisplayName("getPointsTest11")
+    void getPointsTest11() { // 5x5
+        String[][] str = {  {".", ".", ".", ".", "."},
+                            {".", ".", "#", "#", "#"},
+                            {".", ".", "#", "#", "#"},
+                            {".", ".", "#", "#", "#"},
+                            {".", ".", ".", ".", "."}  };
+
+        List<Point> pointList = new ArrayList<>();
+        pointList.add(new Point(0, 0));
+        pointList.add(new Point(4, 4));
+        pointList.add(new Point(2, 1));
+        pointList.add(new Point(4, 3));
+
+        Assertions.assertEquals(C.getPoints(5, str).toString(), pointList.toString());
+    }
+
+    @Test
+    @DisplayName("getPointsTest12")
+    void getPointsTest12() { // 5x5
+        String[][] str = {  {".", ".", ".", ".", "."},
+                            {".", "#", "#", ".", "."},
+                            {".", "#", "#", ".", "."},
+                            {".", "#", "#", ".", "."},
+                            {".", ".", ".", ".", "."}  };
+
+        List<Point> pointList = new ArrayList<>();
+        pointList.add(new Point(0, 0));
+        pointList.add(new Point(4, 4));
+        pointList.add(new Point(1, 1));
+        pointList.add(new Point(2, 3));
+
+        Assertions.assertEquals(C.getPoints(5, str).toString(), pointList.toString());
+    }
+
+    @Test
+    @DisplayName("getLetterTest1")
+    void getLetterTest1() { // X
+        int[] ints = {0,0,4,4,0,0,4,0,1,1,3,1,2,2,1,3,0,4,4,4};
+        Assertions.assertEquals(C.getLetter(C.getPointList(ints)), "X");
+    }
+
+    @Test
+    @DisplayName("getLetterTest2")
+    void getLetterTest2() { // P
+        int[] ints = {0,0,5,5,2,0,5,1,2,3,3,4};
+        Assertions.assertEquals(C.getLetter(C.getPointList(ints)), "P");
+    }
 
 
+    @Test
+    @DisplayName("getLetterTest3")
+    void getLetterTest3() { // H
+        int[] ints = {0,0,5,5,2,0,3,1,2,4,3,5};
+        Assertions.assertEquals(C.getLetter(C.getPointList(ints)), "H");
+    }
 
+    @Test
+    @DisplayName("getLetterTest4")
+    void getLetterTest4() { // L
+        int[] ints = {0,0,4,4,2,1,4,4};
+        Assertions.assertEquals(C.getLetter(C.getPointList(ints)), "L");
+    }
 
+    @Test
+    @DisplayName("getLetterTest5")
+    void getLetterTest5() { // C
+        int[] ints = {0,0,4,4,2,1,4,3};
+        Assertions.assertEquals(C.getLetter(C.getPointList(ints)), "C");
+    }
+
+    @Test
+    @DisplayName("getLetterTest6")
+    void getLetterTest6() { // O
+        int[] ints = {0,0,4,4,1,1,2,3};
+        Assertions.assertEquals(C.getLetter(C.getPointList(ints)), "O");
+    }
 
 
 
