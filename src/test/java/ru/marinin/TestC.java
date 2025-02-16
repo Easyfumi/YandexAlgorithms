@@ -84,8 +84,28 @@ public class TestC {
     }
 
     @Test
-    @DisplayName("remove lines test 4 P")
+    @DisplayName("remove lines test 4 L")
     void removeLinesTest4() {
+        List<String> list = new ArrayList<>();
+        list.add("...###");
+        list.add("...###");
+        list.add("...###");
+        list.add("......");
+        list.add("......");
+        list.add("......");
+
+        int n = list.size();
+
+        List<String> resList = new ArrayList<>();
+        resList.add("...###");
+        resList.add("......");
+
+        Assertions.assertEquals(C.removeLines(n, list), resList);
+    }
+
+    @Test
+    @DisplayName("remove lines test 5 P")
+    void removeLinesTest5() {
         List<String> list = new ArrayList<>();
         list.add("......");
         list.add("..##..");
@@ -106,8 +126,8 @@ public class TestC {
     }
 
     @Test
-    @DisplayName("remove lines test 5 H")
-    void removeLinesTest5() {
+    @DisplayName("remove lines test 6 H")
+    void removeLinesTest6() {
         List<String> list = new ArrayList<>();
         list.add("..##..");
         list.add("..##..");
@@ -283,8 +303,34 @@ public class TestC {
     }
 
     @Test
-    @DisplayName("remove turn remove test 4 H")
+    @DisplayName("remove turn remove test 4 L")
     void removeTurnRemoveTest4() {
+        List<String> list = new ArrayList<>();
+        list.add("...###");
+        list.add("...###");
+        list.add("...###");
+        list.add("......");
+        list.add("......");
+        list.add("......");
+        int n = list.size();
+
+        List<String> resList = new ArrayList<>();
+        resList.add(".#");
+        resList.add("..");
+
+        List<String> turnedList = C.removeLines(n, list);
+        turnedList = C.ternLeft(turnedList);
+        turnedList = C.removeLines(turnedList.size(), turnedList);
+        turnedList = C.ternLeft(turnedList);
+        turnedList = C.ternLeft(turnedList);
+        turnedList = C.ternLeft(turnedList);
+
+        Assertions.assertEquals(turnedList, resList);
+    }
+
+    @Test
+    @DisplayName("remove turn remove test 5 H")
+    void removeTurnRemoveTest5() {
         List<String> list = new ArrayList<>();
         list.add("..##..");
         list.add("..##..");
@@ -311,8 +357,8 @@ public class TestC {
     }
 
     @Test
-    @DisplayName("remove turn remove test 5 P")
-    void removeTurnRemoveTest5() {
+    @DisplayName("remove turn remove test 6 P")
+    void removeTurnRemoveTest6() {
         List<String> list = new ArrayList<>();
         list.add("......");
         list.add("..##..");
@@ -376,8 +422,17 @@ public class TestC {
     }
 
     @Test
-    @DisplayName("answer test 4 H")
+    @DisplayName("answer test 4 L")
     void answerTest4() {
+        List<String> resList = new ArrayList<>();
+        resList.add(".#");
+        resList.add("..");
+        Assertions.assertEquals(C.getAnswer(resList), "L");
+    }
+
+    @Test
+    @DisplayName("answer test 5 H")
+    void answerTest5() {
         List<String> resList = new ArrayList<>();
         resList.add(".#.");
         resList.add("...");
@@ -386,8 +441,8 @@ public class TestC {
     }
 
     @Test
-    @DisplayName("answer test 5 P")
-    void answerTest5() {
+    @DisplayName("answer test 6 P")
+    void answerTest6() {
         List<String> resList = new ArrayList<>();
         resList.add("...");
         resList.add(".#.");

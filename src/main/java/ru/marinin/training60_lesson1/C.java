@@ -31,6 +31,14 @@ public class C {
         if (list.equals(resList)) return "I";
 
         resList.clear();
+        resList.add("#");
+        if (list.equals(resList)) return "I";
+
+        resList.clear();
+        resList.add(".#.");
+        if (list.equals(resList)) return "I";
+
+        resList.clear();
         resList.add("...");
         resList.add(".#.");
         if (list.equals(resList)) return "I";
@@ -46,6 +54,11 @@ public class C {
         resList.add(".#");
         resList.add("..");
         if (list.equals(resList)) return "C";
+
+        resList.clear();
+        resList.add(".#");
+        resList.add("..");
+        if (list.equals(resList)) return "L";
 
         resList.clear();
         resList.add(".#.");
