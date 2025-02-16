@@ -200,6 +200,29 @@ public class TestC {
     }
 
     @Test
+    @DisplayName("turn matrix 4 times test 4")
+    void turnMatrixTest5() {
+        List<String> list = new ArrayList<>();
+        list.add("###");
+        list.add("#.#");
+        list.add("###");
+        list.add("#..");
+
+        List<String> resList = new ArrayList<>();
+        resList.add("###");
+        resList.add("#.#");
+        resList.add("###");
+        resList.add("#..");
+
+        List<String> turnedList = C.ternLeft(list);
+        turnedList = C.ternLeft(turnedList);
+        turnedList = C.ternLeft(turnedList);
+        turnedList = C.ternLeft(turnedList);
+
+        Assertions.assertEquals(turnedList, resList);
+    }
+
+    @Test
     @DisplayName("remove turn remove test 0 empty")
     void removeTurnRemoveTest0() {
         List<String> list = new ArrayList<>();
@@ -387,7 +410,7 @@ public class TestC {
     @DisplayName("answer test 0 empty")
     void answerTest0() {
         List<String> resList = new ArrayList<>();
-        Assertions.assertEquals(C.getAnswer(resList), "X");
+        Assertions.assertEquals(C.getAnswer(resList, resList), "X");
     }
 
 
@@ -396,7 +419,7 @@ public class TestC {
     @DisplayName("full test empty")
     void fullTest0() {
         List<String> resList = new ArrayList<>();
-        Assertions.assertEquals(C.start(resList.size(), resList), "X");
+        Assertions.assertEquals(C.start(resList.size(), resList, resList), "X");
     }
 
     @Test
@@ -407,7 +430,7 @@ public class TestC {
         list.add(".##.");
         list.add(".##.");
         list.add("....");
-        Assertions.assertEquals(C.start(list.size(), list), "I");
+        Assertions.assertEquals(C.start(list.size(), list, list), "I");
     }
 
     @Test
@@ -418,7 +441,7 @@ public class TestC {
         list.add("#..#");
         list.add("#..#");
         list.add("####");
-        Assertions.assertEquals(C.start(list.size(), list), "O");
+        Assertions.assertEquals(C.start(list.size(), list, list), "O");
     }
 
     @Test
@@ -431,7 +454,7 @@ public class TestC {
         list.add("#.....");
         list.add("#.....");
         list.add("######");
-        Assertions.assertEquals(C.start(list.size(), list), "C");
+        Assertions.assertEquals(C.start(list.size(), list, list), "C");
     }
 
     @Test
@@ -444,7 +467,7 @@ public class TestC {
         list.add("#.....");
         list.add("#.....");
         list.add("######");
-        Assertions.assertEquals(C.start(list.size(), list), "L");
+        Assertions.assertEquals(C.start(list.size(), list, list), "L");
     }
 
     @Test
@@ -457,7 +480,7 @@ public class TestC {
         list.add("######");
         list.add("##....");
         list.add("##....");
-        Assertions.assertEquals(C.start(list.size(), list), "P");
+        Assertions.assertEquals(C.start(list.size(), list, list), "P");
     }
 
     @Test
@@ -470,7 +493,42 @@ public class TestC {
         list.add("######");
         list.add("##..##");
         list.add("##..##");
-        Assertions.assertEquals(C.start(list.size(), list), "H");
+        Assertions.assertEquals(C.start(list.size(), list, list), "H");
     }
+
+    @Test
+    @DisplayName("full test 7 L")
+    void fullTest7() {
+        List<String> list = new ArrayList<>();
+        list.add("#####.");
+        list.add("#####.");
+        list.add("#####.");
+        list.add("#####.");
+        list.add("#####.");
+        list.add("######");
+        Assertions.assertEquals(C.start(list.size(), list, list), "L");
+    }
+
+    @Test
+    @DisplayName("full test 8")
+    void fullTest8() {
+        List<String> list = new ArrayList<>();
+        list.add("#");
+        Assertions.assertEquals(C.start(list.size(), list, list), "I");
+    }
+
+    @Test
+    @DisplayName("full test 9")
+    void fullTest9() {
+        List<String> list = new ArrayList<>();
+        list.add("######");
+        list.add("......");
+        list.add("......");
+        list.add("......");
+        list.add("......");
+        list.add("......");
+        Assertions.assertEquals(C.start(list.size(), list, list), "X");
+    }
+
 
 }

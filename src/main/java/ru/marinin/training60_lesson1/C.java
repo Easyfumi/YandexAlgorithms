@@ -14,21 +14,35 @@ public class C {
         for (int i = 0; i < n; i++) {
             list.add(scanner.nextLine());
         }
-
-        System.out.println(start(n, list));
+        List<String> copyOfOriginalList = new ArrayList<>(list);
+        System.out.println(start(n, list, copyOfOriginalList));
     }
 
-    public static String start(int n, List<String> list)  {
+    public static String start(int n, List<String> list, List<String> copyOfOriginalList)  {
         list = getSmallMatrix(n, list);
-        return getAnswer(list);
+        return getAnswer(list, copyOfOriginalList);
     }
 
-    public static String getAnswer(List<String> list) {
-        if (list.size() == 0) return "X";
+    public static boolean checkI(List<String> list) {
+        int countLines = 0;
+        int countSharpInLine = 0;
+        for (int i = 0; i < list.size(); i++) {
+            if (countSharpInLine==0 && list.get(i).contains("#")) {
+                String[] strings = list.get(i).split("");
+                for (String elem : strings) {
+                    if (elem.equals("#")) countSharpInLine++;
+                }
+                countLines++;
+            } else if (list.get(i).contains("#")) countLines++;
+        }
+        return countLines >= countSharpInLine;
+    }
 
+    public static String getAnswer(List<String> list, List<String> copyOfOriginalList) {
         List<String> resList = new ArrayList<>();
+
         resList.add("#");
-        if (list.equals(resList)) return "I";
+        if (list.equals(resList) && checkI(copyOfOriginalList)) return "I";
 
         resList.clear();
         resList.add("###");
@@ -59,7 +73,6 @@ public class C {
         resList.add("###");
         resList.add("#..");
         if (list.equals(resList)) return "P";
-
 
         return "X";
     }
