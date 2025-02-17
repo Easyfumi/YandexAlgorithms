@@ -582,5 +582,22 @@ public class TestC {
         Assertions.assertEquals(C.start(list.size(), list, list), "H");
     }
 
+    @Test
+    @DisplayName("full test 44")
+    void fullTest44() {
+        List<String> list = new ArrayList<>();
+        list.add("..........");
+        list.add("..........");
+        list.add("....#.....");
+        list.add("..........");
+        list.add("....#.....");
+        list.add("..........");
+        list.add("..........");
+        list.add("..........");
+        list.add("..........");
+        list.add("..........");
+        Assertions.assertEquals(C.start(list.size(), list, list), "X");
+    }
+
 
 }

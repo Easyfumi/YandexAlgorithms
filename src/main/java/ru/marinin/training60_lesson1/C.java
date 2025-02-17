@@ -24,10 +24,12 @@ public class C {
     }
 
     public static boolean checkI(List<String> list) {
+        int indexFirstLine = 0;
         int countLines = 0;
         int countSharpInLine = 0;
         for (int i = 0; i < list.size(); i++) {
             if (countSharpInLine==0 && list.get(i).contains("#")) {
+                indexFirstLine = i;
                 String[] strings = list.get(i).split("");
                 for (String elem : strings) {
                     if (elem.equals("#")) countSharpInLine++;
@@ -35,6 +37,10 @@ public class C {
                 countLines++;
             } else if (list.get(i).contains("#")) countLines++;
         }
+        for (int i = indexFirstLine; i < indexFirstLine+countLines; i++) {
+            if (!list.get(i).contains("#")) return false;
+        }
+
         return countLines >= countSharpInLine;
     }
 
