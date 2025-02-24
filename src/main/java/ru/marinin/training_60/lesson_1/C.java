@@ -1,4 +1,4 @@
-package ru.marinin.training60_lesson1;
+package ru.marinin.training_60.lesson_1;
 
 import java.util.ArrayList;
 import java.util.List;

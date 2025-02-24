@@ -1,10 +1,9 @@
-package ru.marinin;
+package ru.marinin.training_60.lesson_1;
 
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.marinin.training60_lesson1.C;
 
 import java.util.ArrayList;
 import java.util.List;

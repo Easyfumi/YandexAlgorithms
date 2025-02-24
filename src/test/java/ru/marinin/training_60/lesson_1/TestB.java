@@ -1,9 +1,4 @@
-package ru.marinin;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import ru.marinin.training60_lesson1.B;
+package ru.marinin.training_60.lesson_1;
 
 public class TestB {
 //    @Test
