@@ -1,8 +1,6 @@
 package ru.marinin.training_60.lesson_2;
 
-import java.util.ArrayDeque;
-import java.util.Queue;
-import java.util.Scanner;
+import java.util.*;
 
 public class B {
     public static void main(String[] args) {
@@ -16,11 +14,34 @@ public class B {
             deque.add(scanner.nextInt());
         }
 
+        System.out.println(getCount(deque, n, k));
+
     }
 
     public static Integer getCount(Queue<Integer> deque, int n, int k) {
 
+        List<Integer> list = new ArrayList<>();
+        list.add(0);
+        while (!deque.isEmpty()) {
+            list.add(list.getLast() + deque.poll());
+        }
 
-        return 0;
+        int left = 0;
+        int right = 1;
+        int count = 0;
+
+        while (right < n + 1) {
+            int sum = list.get(right) - list.get(left);
+            if (sum < k) {
+                right++;
+            } else if (sum == k) {
+                count++;
+                left++;
+            } else {
+                left++;
+            }
+        }
+
+        return count;
     }
 }
